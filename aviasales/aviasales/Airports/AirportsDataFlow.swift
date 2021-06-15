@@ -1,5 +1,5 @@
 //
-//  UseCase.swift
+//  AirportsDataFlow.swift
 //  aviasales
 //
 //  Created by Galina Fedorova on 10.06.2021.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Airports {
+struct AirportsDataFlow {
     
     struct FetchAirportList {
         struct Request {

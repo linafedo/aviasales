@@ -1,5 +1,5 @@
 //
-//  Utility.swift
+//  AirportsUtility.swift
 //  aviasales
 //
 //  Created by Galina Fedorova on 10.06.2021.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Utility {
+struct AirportsUtility {
     
     private init() { }
     

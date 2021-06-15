@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SearchDelegate: class {
+protocol SearchDelegate: AnyObject {
     func search(for city: String)
 }
 

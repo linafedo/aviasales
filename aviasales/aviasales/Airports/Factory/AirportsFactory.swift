@@ -10,11 +10,11 @@ import UIKit
 
 class AirportsFactory {
     
-    static func build() -> UIViewController {
-        let viewController = AirportsListViewController()
-        let presenter = AirportsPresenter(viewController: viewController)
+    func build() -> UIViewController {
+        let presenter = AirportsPresenter()
         let interactor = AirportsInteractor(presenter: presenter)
-        viewController.interactor = interactor
+        let viewController = AirportsListViewController(interactor: interactor)
+        presenter.viewController = viewController
         return viewController
     }
 }

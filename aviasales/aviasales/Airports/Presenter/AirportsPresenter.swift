@@ -9,34 +9,30 @@
 import Foundation
 
 protocol AirportsPresenterProtocol {
-    func presentAirportList(response: Airports.FetchAirportList.Response)
+    func presentAirportList(response: AirportsDataFlow.FetchAirportList.Response)
     func presentEmpty()
     func presentLoading()
 }
 
 class AirportsPresenter: AirportsPresenterProtocol {
     
-    private let viewController: AirportsListViewProtocol
+    weak var viewController: AirportsListViewProtocol?
     
-    init(viewController: AirportsListViewProtocol) {
-        self.viewController = viewController
-    }
-    
-    func presentAirportList(response: Airports.FetchAirportList.Response) {
+    func presentAirportList(response: AirportsDataFlow.FetchAirportList.Response) {
         let viewModels = transformToViewModel(models: response.models)
         DispatchQueue.main.async {
-            self.viewController.displayAirportList(viewModels: viewModels)
+            self.viewController?.displayAirportList(viewModels: viewModels)
         }
     }
     
     func presentEmpty() {
         DispatchQueue.main.async {
-            self.viewController.displayEmpty()
+            self.viewController?.displayEmpty()
         }
     }
     
     func presentLoading() {
-        viewController.displayLoading()
+        viewController?.displayLoading()
     }
 }
 

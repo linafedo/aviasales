@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol AirportsListViewProtocol {
+protocol AirportsListViewProtocol: AnyObject {
     func displayAirportList(viewModels: [AirportViewModel])
     func displayEmpty()
     func displayLoading()
@@ -17,11 +17,25 @@ protocol AirportsListViewProtocol {
 class AirportsListViewController: UIViewController {
     
     var interactor: AirportsInteractorProtocol?
+    let appearance: Appearance
     
     private var tableView: UITableView!
     private var airportsList: [AirportViewModel] = []
     private let placeholderView: PlaceholderView = PlaceholderView()
     private let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    init(
+        appearance: Appearance = Appearance(),
+        interactor: AirportsInteractorProtocol
+    ) {
+        self.appearance = appearance
+        self.interactor = interactor
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,24 +43,28 @@ class AirportsListViewController: UIViewController {
     }
 }
 
+// MARK: - Appearance
+
+extension AirportsListViewController {
+    struct Appearance {
+        let cellHeight: CGFloat = 56
+        let headerHeight: CGFloat = 52
+        let startPlaceholderIcon: UIImage? = UIImage(named: "airplane")
+        let notFoundPlaceholderIcon: UIImage? = UIImage(named: "smile")
+        let startTitle: String = "Начните поиск"
+        let notFoundTitle: String = "Не нашли"
+    }
+}
+
 // MARK: - Setup
 
 private extension AirportsListViewController {
     
-    struct Utility {
-        static let cellHeight: CGFloat = 56
-        static let headerHeight: CGFloat = 52
-        static let startPlaceholderIcon: UIImage? = UIImage(named: "airplane")
-        static let notFoundPlaceholderIcon: UIImage? = UIImage(named: "smile")
-        static let startTitle: String = "Начните поиск"
-        static let notFoundTitle: String = "Не нашли"
-    }
-    
     func setup() {
         setupTableView()
         placeholderView.configure(
-            title: Utility.startTitle,
-            icon: Utility.startPlaceholderIcon
+            title: appearance.startTitle,
+            icon: appearance.startPlaceholderIcon
         )
         view.addSubview(activityIndicator)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -87,8 +105,8 @@ extension AirportsListViewController: AirportsListViewProtocol {
         airportsList.removeAll()
         tableView.reloadData()
         placeholderView.configure(
-            title:Utility.notFoundTitle,
-            icon: Utility.notFoundPlaceholderIcon
+            title: appearance.notFoundTitle,
+            icon: appearance.notFoundPlaceholderIcon
         )
     }
     
@@ -122,7 +140,7 @@ extension AirportsListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        Utility.cellHeight
+        appearance.cellHeight
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -132,6 +150,17 @@ extension AirportsListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        Utility.headerHeight
+        appearance.headerHeight
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // todo router
+        let model = airportsList[indexPath.row]
+        let vc = AirplaneMovementFactory().build(
+            toLatitude: model.latitude,
+            toLongitude: model.longitude,
+            iata: model.iata
+        )
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

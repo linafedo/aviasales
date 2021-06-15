@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D4A02D1A5BAE5D5A5B4C9E9 /* Pods_aviasales.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49EA4CA025691FC58717F69 /* Pods_aviasales.framework */; };
 		4F2152A82670E88700AC61E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2152A72670E88700AC61E6 /* AppDelegate.swift */; };
 		4F2152AC2670E88700AC61E6 /* AirportsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2152AB2670E88700AC61E6 /* AirportsListViewController.swift */; };
 		4F2152B12670E88800AC61E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F2152B02670E88800AC61E6 /* Assets.xcassets */; };
@@ -22,9 +23,9 @@
 		4F2152DD26711DC200AC61E6 /* AirportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2152DC26711DC200AC61E6 /* AirportModel.swift */; };
 		4F2152DF26711EDB00AC61E6 /* AirportsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2152DE26711EDB00AC61E6 /* AirportsRepositoryProtocol.swift */; };
 		4F2152E226711FCD00AC61E6 /* AirportsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2152E126711FCD00AC61E6 /* AirportsRepository.swift */; };
-		4F2152EC267266CF00AC61E6 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2152EB267266CF00AC61E6 /* Utility.swift */; };
+		4F2152EC267266CF00AC61E6 /* AirportsUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2152EB267266CF00AC61E6 /* AirportsUtility.swift */; };
 		4F2152EE2672692800AC61E6 /* AirportsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2152ED2672692800AC61E6 /* AirportsInteractor.swift */; };
-		4F2152F026726C3100AC61E6 /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2152EF26726C3100AC61E6 /* UseCase.swift */; };
+		4F2152F026726C3100AC61E6 /* AirportsDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2152EF26726C3100AC61E6 /* AirportsDataFlow.swift */; };
 		4F2152F226726CBD00AC61E6 /* AirportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2152F126726CBD00AC61E6 /* AirportViewModel.swift */; };
 		4F2152F52672744C00AC61E6 /* AirportsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2152F42672744C00AC61E6 /* AirportsPresenter.swift */; };
 		4F2152F82672759300AC61E6 /* AirportsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2152F72672759300AC61E6 /* AirportsFactory.swift */; };
@@ -32,9 +33,26 @@
 		4F2152FD267380AA00AC61E6 /* AirportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2152FC267380AA00AC61E6 /* AirportCell.swift */; };
 		4F2152FF267389DB00AC61E6 /* AirportHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2152FE267389DB00AC61E6 /* AirportHeaderView.swift */; };
 		4F2153022673995B00AC61E6 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2153012673995B00AC61E6 /* PlaceholderView.swift */; };
+		4F2153042674CD6D00AC61E6 /* AirplaneMovementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2153032674CD6D00AC61E6 /* AirplaneMovementViewController.swift */; };
+		4F2153062674D56C00AC61E6 /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2153052674D56C00AC61E6 /* GoogleMapView.swift */; };
+		4F215309267629B500AC61E6 /* AirplaneMovementFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F215308267629B500AC61E6 /* AirplaneMovementFactory.swift */; };
+		4F21530D26762F8A00AC61E6 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21530C26762F8A00AC61E6 /* MapViewModel.swift */; };
+		4F21530F2676308700AC61E6 /* MapViewLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21530E2676308700AC61E6 /* MapViewLocationModel.swift */; };
+		4F21531126764C2100AC61E6 /* AirplaneMovementLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21531026764C2100AC61E6 /* AirplaneMovementLocationViewModel.swift */; };
+		4F21531626764D7B00AC61E6 /* AirplaneMovementDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21531526764D7B00AC61E6 /* AirplaneMovementDataFlow.swift */; };
+		4F21531A26764E2400AC61E6 /* AirplaneMovementInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21531926764E2400AC61E6 /* AirplaneMovementInteractor.swift */; };
+		4F21531D26764E8F00AC61E6 /* AirplaneMovementLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21531C26764E8F00AC61E6 /* AirplaneMovementLocationModel.swift */; };
+		4F21531F26764EC200AC61E6 /* AirplaneMovementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21531E26764EC200AC61E6 /* AirplaneMovementModel.swift */; };
+		4F215321267650C100AC61E6 /* AirplaneMovementUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F215320267650C100AC61E6 /* AirplaneMovementUtility.swift */; };
+		4F2153242676527C00AC61E6 /* AirplaneMovementPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2153232676527C00AC61E6 /* AirplaneMovementPresenter.swift */; };
+		4F2153262676573600AC61E6 /* AirplaneMovementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2153252676573600AC61E6 /* AirplaneMovementViewModel.swift */; };
+		4F8CE659267802E1005B72F2 /* CityLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8CE658267802E1005B72F2 /* CityLabelView.swift */; };
+		4F8CE65B2678B925005B72F2 /* LocationHealper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8CE65A2678B925005B72F2 /* LocationHealper.swift */; };
+		4F8CE65E2678C0BE005B72F2 /* MapViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8CE65D2678C0BE005B72F2 /* MapViewProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2AAE0FA0E511187CE4157D50 /* Pods-aviasales.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aviasales.release.xcconfig"; path = "Target Support Files/Pods-aviasales/Pods-aviasales.release.xcconfig"; sourceTree = "<group>"; };
 		4F2152A42670E88700AC61E6 /* aviasales.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aviasales.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F2152A72670E88700AC61E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F2152AB2670E88700AC61E6 /* AirportsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportsListViewController.swift; sourceTree = "<group>"; };
@@ -52,9 +70,9 @@
 		4F2152DC26711DC200AC61E6 /* AirportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportModel.swift; sourceTree = "<group>"; };
 		4F2152DE26711EDB00AC61E6 /* AirportsRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportsRepositoryProtocol.swift; sourceTree = "<group>"; };
 		4F2152E126711FCD00AC61E6 /* AirportsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportsRepository.swift; sourceTree = "<group>"; };
-		4F2152EB267266CF00AC61E6 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		4F2152EB267266CF00AC61E6 /* AirportsUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportsUtility.swift; sourceTree = "<group>"; };
 		4F2152ED2672692800AC61E6 /* AirportsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportsInteractor.swift; sourceTree = "<group>"; };
-		4F2152EF26726C3100AC61E6 /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
+		4F2152EF26726C3100AC61E6 /* AirportsDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportsDataFlow.swift; sourceTree = "<group>"; };
 		4F2152F126726CBD00AC61E6 /* AirportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportViewModel.swift; sourceTree = "<group>"; };
 		4F2152F42672744C00AC61E6 /* AirportsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportsPresenter.swift; sourceTree = "<group>"; };
 		4F2152F72672759300AC61E6 /* AirportsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportsFactory.swift; sourceTree = "<group>"; };
@@ -62,6 +80,24 @@
 		4F2152FC267380AA00AC61E6 /* AirportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportCell.swift; sourceTree = "<group>"; };
 		4F2152FE267389DB00AC61E6 /* AirportHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportHeaderView.swift; sourceTree = "<group>"; };
 		4F2153012673995B00AC61E6 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
+		4F2153032674CD6D00AC61E6 /* AirplaneMovementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AirplaneMovementViewController.swift; path = aviasales/AirplaneMovement/View/AirplaneMovementViewController.swift; sourceTree = SOURCE_ROOT; };
+		4F2153052674D56C00AC61E6 /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GoogleMapView.swift; path = aviasales/AirplaneMovement/View/MapView/GoogleMapView.swift; sourceTree = SOURCE_ROOT; };
+		4F215308267629B500AC61E6 /* AirplaneMovementFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirplaneMovementFactory.swift; sourceTree = "<group>"; };
+		4F21530C26762F8A00AC61E6 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		4F21530E2676308700AC61E6 /* MapViewLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewLocationModel.swift; sourceTree = "<group>"; };
+		4F21531026764C2100AC61E6 /* AirplaneMovementLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirplaneMovementLocationViewModel.swift; sourceTree = "<group>"; };
+		4F21531526764D7B00AC61E6 /* AirplaneMovementDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirplaneMovementDataFlow.swift; sourceTree = "<group>"; };
+		4F21531926764E2400AC61E6 /* AirplaneMovementInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirplaneMovementInteractor.swift; sourceTree = "<group>"; };
+		4F21531C26764E8F00AC61E6 /* AirplaneMovementLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirplaneMovementLocationModel.swift; sourceTree = "<group>"; };
+		4F21531E26764EC200AC61E6 /* AirplaneMovementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirplaneMovementModel.swift; sourceTree = "<group>"; };
+		4F215320267650C100AC61E6 /* AirplaneMovementUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirplaneMovementUtility.swift; sourceTree = "<group>"; };
+		4F2153232676527C00AC61E6 /* AirplaneMovementPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirplaneMovementPresenter.swift; sourceTree = "<group>"; };
+		4F2153252676573600AC61E6 /* AirplaneMovementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirplaneMovementViewModel.swift; sourceTree = "<group>"; };
+		4F8CE658267802E1005B72F2 /* CityLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityLabelView.swift; sourceTree = "<group>"; };
+		4F8CE65A2678B925005B72F2 /* LocationHealper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHealper.swift; sourceTree = "<group>"; };
+		4F8CE65D2678C0BE005B72F2 /* MapViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewProtocol.swift; sourceTree = "<group>"; };
+		C49EA4CA025691FC58717F69 /* Pods_aviasales.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aviasales.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F24B50F4291D1D29FCFF70C0 /* Pods-aviasales.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aviasales.debug.xcconfig"; path = "Target Support Files/Pods-aviasales/Pods-aviasales.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,18 +105,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D4A02D1A5BAE5D5A5B4C9E9 /* Pods_aviasales.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		031664603C3D5E6066E89C41 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C49EA4CA025691FC58717F69 /* Pods_aviasales.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4109168DB85105DF74BE7A10 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F24B50F4291D1D29FCFF70C0 /* Pods-aviasales.debug.xcconfig */,
+				2AAE0FA0E511187CE4157D50 /* Pods-aviasales.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		4F21529B2670E88700AC61E6 = {
 			isa = PBXGroup;
 			children = (
 				4F2152A72670E88700AC61E6 /* AppDelegate.swift */,
 				4F2152A62670E88700AC61E6 /* aviasales */,
 				4F2152A52670E88700AC61E6 /* Products */,
+				4109168DB85105DF74BE7A10 /* Pods */,
+				031664603C3D5E6066E89C41 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,10 +163,10 @@
 		4F2152BD2670EAA100AC61E6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4F2152AB2670E88700AC61E6 /* AirportsListViewController.swift */,
+				4F21531226764C6900AC61E6 /* ViewModel */,
 				4F2153002673994300AC61E6 /* Placeholder */,
 				4F2152FB2673809E00AC61E6 /* Cell */,
-				4F2152AB2670E88700AC61E6 /* AirportsListViewController.swift */,
-				4F2152F126726CBD00AC61E6 /* AirportViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -159,8 +215,9 @@
 		4F2152E3267260C200AC61E6 /* Airports */ = {
 			isa = PBXGroup;
 			children = (
-				4F2152F62672758100AC61E6 /* Factory */,
+				4F2152EF26726C3100AC61E6 /* AirportsDataFlow.swift */,
 				4F2152EA267266C000AC61E6 /* Common */,
+				4F2152F62672758100AC61E6 /* Factory */,
 				4F2152E82672632400AC61E6 /* Interactor */,
 				4F2152E72672631B00AC61E6 /* Presenter */,
 				4F2152BD2670EAA100AC61E6 /* View */,
@@ -171,6 +228,12 @@
 		4F2152E4267260E400AC61E6 /* AirplaneMovement */ = {
 			isa = PBXGroup;
 			children = (
+				4F21531526764D7B00AC61E6 /* AirplaneMovementDataFlow.swift */,
+				4F21531426764D6700AC61E6 /* Common */,
+				4F2153072676299A00AC61E6 /* Factory */,
+				4F2153222676525F00AC61E6 /* Presenter */,
+				4F21531826764E0E00AC61E6 /* Interactor */,
+				4F21530A26762C0100AC61E6 /* View */,
 			);
 			path = AirplaneMovement;
 			sourceTree = "<group>";
@@ -205,8 +268,7 @@
 		4F2152EA267266C000AC61E6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				4F2152EB267266CF00AC61E6 /* Utility.swift */,
-				4F2152EF26726C3100AC61E6 /* UseCase.swift */,
+				4F2152EB267266CF00AC61E6 /* AirportsUtility.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -236,6 +298,104 @@
 			path = Placeholder;
 			sourceTree = "<group>";
 		};
+		4F2153072676299A00AC61E6 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				4F215308267629B500AC61E6 /* AirplaneMovementFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		4F21530A26762C0100AC61E6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4F2153032674CD6D00AC61E6 /* AirplaneMovementViewController.swift */,
+				4F21531326764C7B00AC61E6 /* ViewModel */,
+				4F21530B26762F7400AC61E6 /* MapView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4F21530B26762F7400AC61E6 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				4F8CE65D2678C0BE005B72F2 /* MapViewProtocol.swift */,
+				4F2153052674D56C00AC61E6 /* GoogleMapView.swift */,
+				4F8CE658267802E1005B72F2 /* CityLabelView.swift */,
+				4F8CE65C2678B995005B72F2 /* Healper */,
+				4F21531726764DC700AC61E6 /* Model */,
+			);
+			path = MapView;
+			sourceTree = "<group>";
+		};
+		4F21531226764C6900AC61E6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4F2152F126726CBD00AC61E6 /* AirportViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4F21531326764C7B00AC61E6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4F21531026764C2100AC61E6 /* AirplaneMovementLocationViewModel.swift */,
+				4F2153252676573600AC61E6 /* AirplaneMovementViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4F21531426764D6700AC61E6 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4F215320267650C100AC61E6 /* AirplaneMovementUtility.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4F21531726764DC700AC61E6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4F21530C26762F8A00AC61E6 /* MapViewModel.swift */,
+				4F21530E2676308700AC61E6 /* MapViewLocationModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4F21531826764E0E00AC61E6 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				4F21531B26764E6F00AC61E6 /* Model */,
+				4F21531926764E2400AC61E6 /* AirplaneMovementInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		4F21531B26764E6F00AC61E6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4F21531C26764E8F00AC61E6 /* AirplaneMovementLocationModel.swift */,
+				4F21531E26764EC200AC61E6 /* AirplaneMovementModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4F2153222676525F00AC61E6 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				4F2153232676527C00AC61E6 /* AirplaneMovementPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		4F8CE65C2678B995005B72F2 /* Healper */ = {
+			isa = PBXGroup;
+			children = (
+				4F8CE65A2678B925005B72F2 /* LocationHealper.swift */,
+			);
+			path = Healper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -243,9 +403,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4F2152B82670E88800AC61E6 /* Build configuration list for PBXNativeTarget "aviasales" */;
 			buildPhases = (
+				E5393C18542F3C84CB73BBE7 /* [CP] Check Pods Manifest.lock */,
 				4F2152A02670E88700AC61E6 /* Sources */,
 				4F2152A12670E88700AC61E6 /* Frameworks */,
 				4F2152A22670E88700AC61E6 /* Resources */,
+				97595B71DE6DBE30BD7E91E1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -300,30 +462,88 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		97595B71DE6DBE30BD7E91E1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-aviasales/Pods-aviasales-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-aviasales/Pods-aviasales-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-aviasales/Pods-aviasales-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5393C18542F3C84CB73BBE7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-aviasales-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4F2152A02670E88700AC61E6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F21531F26764EC200AC61E6 /* AirplaneMovementModel.swift in Sources */,
 				4F2152C62670F37A00AC61E6 /* EndpointType.swift in Sources */,
 				4F2152D42670FBA000AC61E6 /* NetworkServiceProtocol.swift in Sources */,
 				4F2152EE2672692800AC61E6 /* AirportsInteractor.swift in Sources */,
 				4F2152CA2670F60700AC61E6 /* NetworkError.swift in Sources */,
 				4F2152DD26711DC200AC61E6 /* AirportModel.swift in Sources */,
 				4F2152F82672759300AC61E6 /* AirportsFactory.swift in Sources */,
+				4F21531126764C2100AC61E6 /* AirplaneMovementLocationViewModel.swift in Sources */,
 				4F2152D62670FC4D00AC61E6 /* NetworkService.swift in Sources */,
-				4F2152EC267266CF00AC61E6 /* Utility.swift in Sources */,
+				4F21531626764D7B00AC61E6 /* AirplaneMovementDataFlow.swift in Sources */,
+				4F2153042674CD6D00AC61E6 /* AirplaneMovementViewController.swift in Sources */,
+				4F2152EC267266CF00AC61E6 /* AirportsUtility.swift in Sources */,
 				4F2152E226711FCD00AC61E6 /* AirportsRepository.swift in Sources */,
 				4F2152DF26711EDB00AC61E6 /* AirportsRepositoryProtocol.swift in Sources */,
+				4F8CE659267802E1005B72F2 /* CityLabelView.swift in Sources */,
+				4F21530D26762F8A00AC61E6 /* MapViewModel.swift in Sources */,
 				4F2152DA2671178400AC61E6 /* HTTPTask.swift in Sources */,
 				4F2152CC2670F6A100AC61E6 /* ParameterEncoder.swift in Sources */,
+				4F2153242676527C00AC61E6 /* AirplaneMovementPresenter.swift in Sources */,
 				4F2152AC2670E88700AC61E6 /* AirportsListViewController.swift in Sources */,
 				4F2152C42670F32400AC61E6 /* NetworkResponse.swift in Sources */,
 				4F2153022673995B00AC61E6 /* PlaceholderView.swift in Sources */,
-				4F2152F026726C3100AC61E6 /* UseCase.swift in Sources */,
+				4F2152F026726C3100AC61E6 /* AirportsDataFlow.swift in Sources */,
+				4F215309267629B500AC61E6 /* AirplaneMovementFactory.swift in Sources */,
+				4F2153062674D56C00AC61E6 /* GoogleMapView.swift in Sources */,
+				4F21530F2676308700AC61E6 /* MapViewLocationModel.swift in Sources */,
 				4F2152F52672744C00AC61E6 /* AirportsPresenter.swift in Sources */,
+				4F8CE65E2678C0BE005B72F2 /* MapViewProtocol.swift in Sources */,
 				4F2152F226726CBD00AC61E6 /* AirportViewModel.swift in Sources */,
 				4F2152FF267389DB00AC61E6 /* AirportHeaderView.swift in Sources */,
+				4F2153262676573600AC61E6 /* AirplaneMovementViewModel.swift in Sources */,
+				4F21531A26764E2400AC61E6 /* AirplaneMovementInteractor.swift in Sources */,
+				4F215321267650C100AC61E6 /* AirplaneMovementUtility.swift in Sources */,
+				4F21531D26764E8F00AC61E6 /* AirplaneMovementLocationModel.swift in Sources */,
+				4F8CE65B2678B925005B72F2 /* LocationHealper.swift in Sources */,
 				4F2152FD267380AA00AC61E6 /* AirportCell.swift in Sources */,
 				4F2152A82670E88700AC61E6 /* AppDelegate.swift in Sources */,
 				4F2152CF2670F6E100AC61E6 /* URLParameterEncoding.swift in Sources */,
@@ -442,6 +662,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -451,6 +672,7 @@
 		};
 		4F2152B92670E88800AC61E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F24B50F4291D1D29FCFF70C0 /* Pods-aviasales.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -469,6 +691,7 @@
 		};
 		4F2152BA2670E88800AC61E6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AAE0FA0E511187CE4157D50 /* Pods-aviasales.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -10,12 +10,13 @@ import UIKit
 
 class AirportCell: UITableViewCell {
     
+    private let appearance: Appearance = Appearance()
     private let titleLabel: UILabel = UILabel()
     private let descriptionLabel: UILabel = UILabel()
     private let sideLabel: UILabel = UILabel()
     private let verticalStack: UIStackView = UIStackView()
     private let horizontalStack: UIStackView = UIStackView()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
@@ -38,22 +39,27 @@ class AirportCell: UITableViewCell {
     }
 }
 
+// MARK: - Appearance
+
+extension AirportCell {
+    struct Appearance {
+        let verticalInset: CGFloat = 4
+        let leadingConst: CGFloat = 16
+        let systemFont: CGFloat = 14
+    }
+}
+
 // MARK: - setup
 
 private extension AirportCell {
 
-    struct Utility {
-        static let verticalInset: CGFloat = 4
-        static let leadingConst: CGFloat = 16
-    }
-    
     func setup() {
         descriptionLabel.textColor = .lightGray
-        descriptionLabel.font = .systemFont(ofSize: 14)
+        descriptionLabel.font = .systemFont(ofSize: appearance.systemFont)
         verticalStack.addArrangedSubview(titleLabel)
         verticalStack.addArrangedSubview(descriptionLabel)
         verticalStack.axis = .vertical
-        verticalStack.spacing = Utility.verticalInset
+        verticalStack.spacing = appearance.verticalInset
         
         horizontalStack.addArrangedSubview(verticalStack)
         horizontalStack.addArrangedSubview(UIView())
@@ -63,11 +69,11 @@ private extension AirportCell {
         horizontalStack.translatesAutoresizingMaskIntoConstraints = false
         horizontalStack.leadingAnchor.constraint(
             equalTo: leadingAnchor,
-            constant: Utility.leadingConst
+            constant: appearance.leadingConst
         ).isActive = true
         horizontalStack.trailingAnchor.constraint(
             equalTo: trailingAnchor,
-            constant: -Utility.leadingConst
+            constant: -appearance.leadingConst
         ).isActive = true
         horizontalStack.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }

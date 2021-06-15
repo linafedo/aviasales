@@ -9,7 +9,7 @@
 import Foundation
 
 protocol AirportsInteractorProtocol {
-    func fetchAirportList(request: Airports.FetchAirportList.Request)
+    func fetchAirportList(request: AirportsDataFlow.FetchAirportList.Request)
 }
 
 class AirportsInteractor: AirportsInteractorProtocol {
@@ -25,7 +25,7 @@ class AirportsInteractor: AirportsInteractorProtocol {
         self.presenter = presenter
     }
 
-    func fetchAirportList(request: Airports.FetchAirportList.Request) {
+    func fetchAirportList(request: AirportsDataFlow.FetchAirportList.Request) {
         presenter.presentLoading()
         repository.fetchAirportList(for: request.city) { [weak self] airportModels, error in
             guard let models = airportModels else {
@@ -35,7 +35,7 @@ class AirportsInteractor: AirportsInteractorProtocol {
             airportModels?.isEmpty == true
                 ? self?.presenter.presentEmpty()
                 : self?.presenter.presentAirportList(response:
-                Airports.FetchAirportList.Response(models: models)
+                AirportsDataFlow.FetchAirportList.Response(models: models)
             )
         }
     }

@@ -24,8 +24,8 @@ class AirportsRepository: AirportsRepositoryProtocol {
         ]
         networkService.request(
             EndPoint(
-                baseUrl: Utility.baseUrl,
-                path: Utility.path,
+                baseUrl: AirportsUtility.baseUrl,
+                path: AirportsUtility.path,
                 httpMethod: .get,
                 task: .requestParameters(parameters))) { [weak self] (data, response, error) in
                     guard error == nil else { completion(nil, error); return }
