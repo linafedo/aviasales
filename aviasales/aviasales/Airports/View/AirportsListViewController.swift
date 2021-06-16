@@ -13,17 +13,20 @@ protocol AirportsListViewProtocol: AnyObject {
     func displayEmpty(viewModel: AirportsDataFlow.Placeholder.ViewModel)
     func displayLoading()
     func displayInitialState(viewModel: AirportsDataFlow.InitialState.ViewModel)
+    func displayRoute(viewModel: AirportsDataFlow.CheckPlace)
 }
 
 class AirportsListViewController: UIViewController {
     
-    var interactor: AirportsInteractorProtocol?
-    let appearance: Appearance
+    private var interactor: AirportsInteractorProtocol?
+    private var airportsList: [AirportViewModel] = []
+    
+    private let appearance: Appearance
     
     private var tableView: UITableView!
-    private var airportsList: [AirportViewModel] = []
     private let placeholderView: PlaceholderView = PlaceholderView()
     private let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    private var headerView: AirportHeaderView = AirportHeaderView()
     
     init(
         appearance: Appearance = Appearance(),
@@ -78,6 +81,8 @@ private extension AirportsListViewController {
         tableView.dataSource = self
         tableView.backgroundColor = .white
         tableView.backgroundView = placeholderView
+        
+        headerView.delegate = self
     }
 }
 
@@ -118,6 +123,15 @@ extension AirportsListViewController: AirportsListViewProtocol {
             icon: viewModel.icon
         )
     }
+    
+    func displayRoute(viewModel: AirportsDataFlow.CheckPlace) {
+        let vc = AirplaneMovementFactory().build(
+            toLatitude: viewModel.latitude,
+            toLongitude: viewModel.longitude,
+            iata: viewModel.iata
+        )
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 // MARK: - SearchDelegate
@@ -146,8 +160,6 @@ extension AirportsListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = AirportHeaderView()
-        headerView.delegate = self
         return headerView
     }
     
@@ -158,11 +170,13 @@ extension AirportsListViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.isSelected = false
         let model = airportsList[indexPath.row]
-        let vc = AirplaneMovementFactory().build(
-            toLatitude: model.latitude,
-            toLongitude: model.longitude,
-            iata: model.iata
+        interactor?.checkPlace(
+            request: .init(
+                latitude: model.latitude,
+                longitude: model.longitude,
+                name: model.name,
+                iata: model.iata
+            )
         )
-        navigationController?.pushViewController(vc, animated: true)
     }
 }

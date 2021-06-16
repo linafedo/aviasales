@@ -13,5 +13,5 @@ struct Utility {
     static let startLatitude: Double = 59.93863
     static let startLongitude: Double = 30.31413
     static let iata: String = "LED"
-    static let cityName: String = "Санкт-Петербург"
+    static let cityName: String = "Санкт-Петербург, Россия"
 }

@@ -12,7 +12,7 @@ import GoogleMapsUtils
 
 final class GoogleMapView: UIView, MapViewProtocol {
     
-    private var mapView: GMSMapView = {
+    private let mapView: GMSMapView = {
         let camera = GMSCameraPosition(
             latitude: Utility.startLatitude,
             longitude: Utility.startLongitude,
@@ -60,7 +60,7 @@ extension GoogleMapView {
         let markerGroundAnchor: CGPoint = CGPoint(x: CGFloat(0.5), y: CGFloat(0.5))
         let cameraPadding: CGFloat = 50
         let routStrokeWidth: CGFloat = 2
-        let animationDuration: Double = 0.2
+        let animationDuration: Double = 0.1
         let borderColor: UIColor = UIColor(red: 73, green: 188, blue: 217)
     }
 }
@@ -79,8 +79,14 @@ private extension GoogleMapView {
     }
     
     func moveCameraIfNeeded(with model: MapViewModel) {
-        let northEast = CLLocationCoordinate2D(latitude: model.fromLocation.latitude, longitude: model.fromLocation.longitude)
-        let southWest = CLLocationCoordinate2D(latitude: model.toLocation.latitude, longitude: model.toLocation.longitude)
+        let northEast = CLLocationCoordinate2D(
+            latitude: model.fromLocation.latitude,
+            longitude: model.fromLocation.longitude
+        )
+        let southWest = CLLocationCoordinate2D(
+            latitude: model.toLocation.latitude,
+            longitude: model.toLocation.longitude
+        )
 
         if needMoveCamera(fromLocation: northEast, toLocation: southWest) {
             let bounds = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
@@ -104,12 +110,19 @@ private extension GoogleMapView {
         points = pathData.points
         let polyline = GMSPolyline(path: pathData.path)
         
-        let styles: [GMSStrokeStyle] = [.solidColor(appearance.borderColor), .solidColor(.clear)]
+        let styles: [GMSStrokeStyle] = [
+            .solidColor(appearance.borderColor),
+            .solidColor(.clear)
+        ]
         let scale = 1.0 / mapView.projection.points(forMeters: 1, at: mapView.camera.target)
         let solidLine = NSNumber(value: 5 * Float(scale))
         let gap = NSNumber(value: 3 * Float(scale))
         
-        polyline.spans = GMSStyleSpans(pathData.path, styles, [solidLine, gap], GMSLengthKind.rhumb)
+        polyline.spans = GMSStyleSpans(
+            pathData.path, styles,
+            [solidLine, gap],
+            GMSLengthKind.rhumb
+        )
         polyline.strokeWidth = appearance.routStrokeWidth
         polyline.map = mapView
     }

@@ -14,6 +14,8 @@ protocol AirportsPresenterProtocol {
     func presentLoading()
     func presentInitialState()
     func presentError()
+    func presentRoute(response: AirportsDataFlow.CheckPlace)
+    func presentCityError()
 }
 
 class AirportsPresenter: AirportsPresenterProtocol {
@@ -61,6 +63,19 @@ class AirportsPresenter: AirportsPresenterProtocol {
                 )
             )
         }
+    }
+    
+    func presentCityError() {
+        self.viewController?.displayEmpty(
+            viewModel: .init(
+                title: "Город вылета и город прилета должны быть разными",
+                icon: UIImage(named: "smile")
+            )
+        )
+    }
+    
+    func presentRoute(response: AirportsDataFlow.CheckPlace) {
+        viewController?.displayRoute(viewModel: response)
     }
 }
 

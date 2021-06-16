@@ -11,6 +11,7 @@ import Foundation
 protocol AirportsInteractorProtocol {
     func fetchAirportList(request: AirportsDataFlow.FetchAirportList.Request)
     func setupInitialState()
+    func checkPlace(request: AirportsDataFlow.CheckPlace)
 }
 
 class AirportsInteractor: AirportsInteractorProtocol {
@@ -42,6 +43,14 @@ class AirportsInteractor: AirportsInteractorProtocol {
                 : self?.presenter.presentAirportList(response:
                 AirportsDataFlow.FetchAirportList.Response(models: models)
             )
+        }
+    }
+    
+    func checkPlace(request: AirportsDataFlow.CheckPlace) {
+        if request.name == Utility.cityName {
+            presenter.presentCityError()
+        } else {
+            presenter.presentRoute(response: request)
         }
     }
 }

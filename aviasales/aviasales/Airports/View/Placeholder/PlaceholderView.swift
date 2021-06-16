@@ -8,12 +8,14 @@
 
 import UIKit
 
-class PlaceholderView: UIView {
+final class PlaceholderView: UIView {
     
-    let iconView: UIImageView = UIImageView()
-    let titleLabel: UILabel = UILabel()
+    private let appearance: Appearance
+    private let iconView: UIImageView = UIImageView()
+    private let titleLabel: UILabel = UILabel()
     
-    init() {
+    init(appearance: Appearance = Appearance()) {
+        self.appearance = appearance
         super.init(frame: .zero)
         setup()
     }
@@ -28,34 +30,49 @@ class PlaceholderView: UIView {
     }
 }
 
+// MARK: -  Appearance
+extension PlaceholderView {
+    struct Appearance {
+        let iconHeight: CGFloat = 100
+        let titleBottomConst: CGFloat = 32
+        let labelOffset: CGFloat = 36
+        let topOffset: CGFloat = 100
+    }
+}
+
 // MARK: - setup
 
 private extension PlaceholderView {
-    
-    struct Utility {
-        static let iconHeight: CGFloat = 100
-        static let titleBottomConst: CGFloat = 32
-    }
 
     func setup() {
         addSubview(iconView)
         addSubview(titleLabel)
         
         iconView.translatesAutoresizingMaskIntoConstraints = false
-        iconView.centerYAnchor.constraint(
-            equalTo: centerYAnchor
+        iconView.topAnchor.constraint(
+            equalTo: topAnchor,
+            constant: appearance.topOffset
         ).isActive = true
         iconView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        iconView.heightAnchor.constraint(equalToConstant: Utility.iconHeight).isActive = true
-        iconView.widthAnchor.constraint(equalToConstant: Utility.iconHeight).isActive = true
+        iconView.heightAnchor.constraint(equalToConstant: appearance.iconHeight).isActive = true
+        iconView.widthAnchor.constraint(equalToConstant: appearance.iconHeight).isActive = true
 
+        titleLabel.textAlignment = .center
+        titleLabel.numberOfLines = 0
+        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        titleLabel.leadingAnchor.constraint(
+            equalTo: leadingAnchor,
+            constant: appearance.titleBottomConst
+        ).isActive = true
+        titleLabel.trailingAnchor.constraint(
+            equalTo: trailingAnchor,
+            constant: -appearance.titleBottomConst
+        ).isActive = true
         titleLabel.topAnchor.constraint(
             equalTo: iconView.bottomAnchor,
-            constant: Utility.titleBottomConst
+            constant: appearance.titleBottomConst
         ).isActive = true
-        
         
         titleLabel.textColor = .lightGray
     }

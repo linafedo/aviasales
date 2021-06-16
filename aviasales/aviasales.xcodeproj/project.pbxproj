@@ -51,6 +51,7 @@
 		4F8CE65E2678C0BE005B72F2 /* MapViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8CE65D2678C0BE005B72F2 /* MapViewProtocol.swift */; };
 		4F8CE66126790F0F005B72F2 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8CE66026790F0F005B72F2 /* UIColorExtension.swift */; };
 		4F8CE664267A2420005B72F2 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8CE663267A2420005B72F2 /* ArrayExtensions.swift */; };
+		4F8CE66B267AB246005B72F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F8CE66A267AB246005B72F2 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		4F8CE65D2678C0BE005B72F2 /* MapViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewProtocol.swift; sourceTree = "<group>"; };
 		4F8CE66026790F0F005B72F2 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		4F8CE663267A2420005B72F2 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		4F8CE66A267AB246005B72F2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C49EA4CA025691FC58717F69 /* Pods_aviasales.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aviasales.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F24B50F4291D1D29FCFF70C0 /* Pods-aviasales.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aviasales.debug.xcconfig"; path = "Target Support Files/Pods-aviasales/Pods-aviasales.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				4F2152A72670E88700AC61E6 /* AppDelegate.swift */,
+				4F8CE66A267AB246005B72F2 /* LaunchScreen.storyboard */,
 				4F2152A62670E88700AC61E6 /* aviasales */,
 				4F2152A52670E88700AC61E6 /* Products */,
 				4109168DB85105DF74BE7A10 /* Pods */,
@@ -470,6 +473,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F8CE66B267AB246005B72F2 /* LaunchScreen.storyboard in Resources */,
 				4F2152B12670E88800AC61E6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

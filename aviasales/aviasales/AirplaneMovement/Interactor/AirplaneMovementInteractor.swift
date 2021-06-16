@@ -14,7 +14,7 @@ protocol AirplaneMovementInteractorProtocol {
 
 class AirplaneMovementInteractor: AirplaneMovementInteractorProtocol {
     
-    let presenter: AirplaneMovementPresenterProtocol
+    private let presenter: AirplaneMovementPresenterProtocol
     private let movementModel: AirplaneMovementModel
     
     init(movementModel: AirplaneMovementModel,

@@ -30,7 +30,7 @@ class GoogleLocationHealper {
         
         var points: [CLLocationCoordinate2D] = []
 
-        let nPoints = 50
+        let nPoints = 100
         for t in 0 ... nPoints {
             let tx = CGFloat(t) / CGFloat(nPoints)
             let ty = 0.1 * sin(tx * -2 * CGFloat.pi )

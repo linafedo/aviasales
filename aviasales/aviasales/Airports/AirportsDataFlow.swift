@@ -34,4 +34,11 @@ struct AirportsDataFlow {
             let icon: UIImage?
         }
     }
+    
+    struct CheckPlace {
+        let latitude: Double
+        let longitude: Double
+        let name: String
+        let iata: String
+    }
 }
