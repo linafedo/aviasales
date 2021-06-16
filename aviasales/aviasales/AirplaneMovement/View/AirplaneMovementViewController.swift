@@ -37,6 +37,10 @@ class AirplaneMovementViewController: UIViewController {
         super.viewDidAppear(animated)
         setupInitialState()
     }
+    
+    deinit {
+        mapView.reset()
+    }
 }
 
 // MARK: - AirplaneMovementViewProtocol

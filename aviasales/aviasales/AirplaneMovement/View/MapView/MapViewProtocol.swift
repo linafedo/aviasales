@@ -10,4 +10,5 @@ import UIKit
 
 protocol MapViewProtocol: UIView {
     func configure(with model: MapViewModel)
+    func reset()
 }

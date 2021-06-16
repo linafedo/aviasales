@@ -21,7 +21,7 @@ final class GoogleMapView: UIView, MapViewProtocol {
         return GMSMapView(frame: .zero, camera: camera)
     }()
     
-    private var timerAnimation: Timer!
+    private var timerAnimation: Timer?
     private var points: [CLLocationCoordinate2D] = []
     private let appearance: Appearence
     
@@ -44,6 +44,11 @@ final class GoogleMapView: UIView, MapViewProtocol {
         configurePlaneMarker(with: model.fromLocation)
         let containsLocation = containsLocation(location: model.toLocation)
         movePlane(moveCamera: !containsLocation)
+    }
+    
+    func reset() {
+        timerAnimation?.invalidate()
+        timerAnimation = nil
     }
 }
 
@@ -138,7 +143,7 @@ private extension GoogleMapView {
         )
         planeMarker.position = position
         if let point = points[safe: 1] {
-            setPlaneRotatin(toLocation: point) 
+            setPlaneRotatin(toLocation: point)
         }
         planeMarker.groundAnchor = appearance.markerGroundAnchor
         planeMarker.icon = planeIcon
@@ -147,12 +152,12 @@ private extension GoogleMapView {
     }
     
     func movePlane(moveCamera: Bool) {
-        self.timerAnimation = Timer.scheduledTimer(
+        timerAnimation = Timer.scheduledTimer(
             withTimeInterval: appearance.animationDuration,
             repeats: true
         ) { [weak self] timer in
             guard let point = self?.points.first else {
-                self?.timerAnimation.invalidate()
+                self?.timerAnimation?.invalidate()
                 return
             }
             if let point = self?.points[safe: 2] {
