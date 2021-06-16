@@ -27,13 +27,11 @@ class AirportsRepository: AirportsRepositoryProtocol {
                 baseUrl: AirportsUtility.baseUrl,
                 path: AirportsUtility.path,
                 httpMethod: .get,
-                task: .requestParameters(parameters))) { [weak self] (data, response, error) in
-                    guard error == nil else { completion(nil, error); return }
-                    guard let data = data else {
-                        // todo
+                task: .requestParameters(parameters))) { [weak self] (data, _, error) in
+                    guard error == nil, let data = data else {
+                        completion(nil, error)
                         return
                     }
-                    
                     do {
                         let values = try self?.transform(data: data)
                         completion(values, nil)

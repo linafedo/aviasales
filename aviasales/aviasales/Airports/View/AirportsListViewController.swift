@@ -10,8 +10,9 @@ import UIKit
 
 protocol AirportsListViewProtocol: AnyObject {
     func displayAirportList(viewModels: [AirportViewModel])
-    func displayEmpty()
+    func displayEmpty(viewModel: AirportsDataFlow.Placeholder.ViewModel)
     func displayLoading()
+    func displayInitialState(viewModel: AirportsDataFlow.InitialState.ViewModel)
 }
 
 class AirportsListViewController: UIViewController {
@@ -39,7 +40,7 @@ class AirportsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
+        interactor?.setupInitialState()
     }
 }
 
@@ -49,10 +50,6 @@ extension AirportsListViewController {
     struct Appearance {
         let cellHeight: CGFloat = 56
         let headerHeight: CGFloat = 52
-        let startPlaceholderIcon: UIImage? = UIImage(named: "airplane")
-        let notFoundPlaceholderIcon: UIImage? = UIImage(named: "smile")
-        let startTitle: String = "Начните поиск"
-        let notFoundTitle: String = "Не нашли"
     }
 }
 
@@ -62,10 +59,6 @@ private extension AirportsListViewController {
     
     func setup() {
         setupTableView()
-        placeholderView.configure(
-            title: appearance.startTitle,
-            icon: appearance.startPlaceholderIcon
-        )
         view.addSubview(activityIndicator)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -99,14 +92,14 @@ extension AirportsListViewController: AirportsListViewProtocol {
         placeholderView.isHidden = true
     }
     
-    func displayEmpty() {
+    func displayEmpty(viewModel: AirportsDataFlow.Placeholder.ViewModel) {
         activityIndicator.stopAnimating()
         placeholderView.isHidden = false
         airportsList.removeAll()
         tableView.reloadData()
         placeholderView.configure(
-            title: appearance.notFoundTitle,
-            icon: appearance.notFoundPlaceholderIcon
+            title: viewModel.title,
+            icon: viewModel.icon
         )
     }
     
@@ -115,6 +108,15 @@ extension AirportsListViewController: AirportsListViewProtocol {
         tableView.reloadData()
         activityIndicator.startAnimating()
         placeholderView.isHidden = true
+    }
+    
+    func displayInitialState(viewModel: AirportsDataFlow.InitialState.ViewModel) {
+        setup()
+        title = viewModel.cityName
+        placeholderView.configure(
+            title: viewModel.title,
+            icon: viewModel.icon
+        )
     }
 }
 
@@ -154,7 +156,7 @@ extension AirportsListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // todo router
+        tableView.cellForRow(at: indexPath)?.isSelected = false
         let model = airportsList[indexPath.row]
         let vc = AirplaneMovementFactory().build(
             toLatitude: model.latitude,

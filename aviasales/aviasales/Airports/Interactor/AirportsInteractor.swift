@@ -10,6 +10,7 @@ import Foundation
 
 protocol AirportsInteractorProtocol {
     func fetchAirportList(request: AirportsDataFlow.FetchAirportList.Request)
+    func setupInitialState()
 }
 
 class AirportsInteractor: AirportsInteractorProtocol {
@@ -24,12 +25,16 @@ class AirportsInteractor: AirportsInteractorProtocol {
         self.repository = repository
         self.presenter = presenter
     }
+    
+    func setupInitialState() {
+        presenter.presentInitialState() 
+    }
 
     func fetchAirportList(request: AirportsDataFlow.FetchAirportList.Request) {
         presenter.presentLoading()
         repository.fetchAirportList(for: request.city) { [weak self] airportModels, error in
-            guard let models = airportModels else {
-                // todo
+            guard let models = airportModels, error == nil else {
+                self?.presenter.presentError()
                 return
             }
             airportModels?.isEmpty == true

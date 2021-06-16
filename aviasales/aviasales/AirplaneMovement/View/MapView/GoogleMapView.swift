@@ -14,9 +14,9 @@ final class GoogleMapView: UIView, MapViewProtocol {
     
     private var mapView: GMSMapView = {
         let camera = GMSCameraPosition(
-            latitude: AirplaneMovementUtility.startLatitude,
-            longitude: AirplaneMovementUtility.startLongitude,
-            zoom: 1
+            latitude: Utility.startLatitude,
+            longitude: Utility.startLongitude,
+            zoom: 5
         )
         return GMSMapView(frame: .zero, camera: camera)
     }()
@@ -24,6 +24,8 @@ final class GoogleMapView: UIView, MapViewProtocol {
     private var timerAnimation: Timer!
     private var points: [CLLocationCoordinate2D] = []
     private let appearance: Appearence
+    
+    private let planeMarker: GMSMarker = GMSMarker()
     
     init(appearance: Appearence = Appearence()) {
         self.appearance = appearance
@@ -36,10 +38,12 @@ final class GoogleMapView: UIView, MapViewProtocol {
     }
     
     func configure(with model: MapViewModel) {
-        moveCamera(with: model)
         creatRoute(with: model)
         createMarkers(with: model)
-        movePlane(marker: createPlaneMarker(with: model.fromLocation))
+        moveCameraIfNeeded(with: model)
+        configurePlaneMarker(with: model.fromLocation)
+        let containsLocation = containsLocation(location: model.toLocation)
+        movePlane(moveCamera: !containsLocation)
     }
 }
 
@@ -51,7 +55,8 @@ extension GoogleMapView {
         let markerGroundAnchor: CGPoint = CGPoint(x: CGFloat(0.5), y: CGFloat(0.5))
         let cameraPadding: CGFloat = 50
         let routStrokeWidth: CGFloat = 2
-        let animationDuration: Double = 0.05
+        let animationDuration: Double = 0.2
+        let borderColor: UIColor = UIColor(red: 73, green: 188, blue: 217)
     }
 }
 
@@ -68,12 +73,15 @@ private extension GoogleMapView {
         mapView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
-    func moveCamera(with model: MapViewModel) {
+    func moveCameraIfNeeded(with model: MapViewModel) {
         let northEast = CLLocationCoordinate2D(latitude: model.fromLocation.latitude, longitude: model.fromLocation.longitude)
         let southWest = CLLocationCoordinate2D(latitude: model.toLocation.latitude, longitude: model.toLocation.longitude)
-        let bounds = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
-        let update = GMSCameraUpdate.fit(bounds, withPadding: appearance.cameraPadding)
-        mapView.moveCamera(update)
+
+        if needMoveCamera(fromLocation: northEast, toLocation: southWest) {
+            let bounds = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
+            let update = GMSCameraUpdate.fit(bounds, withPadding: appearance.cameraPadding)
+            mapView.moveCamera(update)
+        }
     }
     
     func creatRoute(with model: MapViewModel) {
@@ -90,7 +98,13 @@ private extension GoogleMapView {
         )
         points = pathData.points
         let polyline = GMSPolyline(path: pathData.path)
-        polyline.geodesic = true
+        
+        let styles: [GMSStrokeStyle] = [.solidColor(appearance.borderColor), .solidColor(.clear)]
+        let scale = 1.0 / mapView.projection.points(forMeters: 1, at: mapView.camera.target)
+        let solidLine = NSNumber(value: 5 * Float(scale))
+        let gap = NSNumber(value: 3 * Float(scale))
+        
+        polyline.spans = GMSStyleSpans(pathData.path, styles, [solidLine, gap], GMSLengthKind.rhumb)
         polyline.strokeWidth = appearance.routStrokeWidth
         polyline.map = mapView
     }
@@ -115,42 +129,66 @@ private extension GoogleMapView {
         toMarker.map = mapView
     }
     
-    func createPlaneMarker(with model: MapViewLocationModel) -> GMSMarker {
+    func configurePlaneMarker(with model: MapViewLocationModel) {
         let planeIcon = appearance.planeIcon
         
         let position = CLLocationCoordinate2D(
             latitude: model.latitude,
             longitude: model.longitude
         )
-        let marker = GMSMarker(position: position)
-        marker.groundAnchor = appearance.markerGroundAnchor
-        marker.icon = planeIcon
-        marker.map = mapView
-        marker.zIndex = 1
-
-        return marker
+        planeMarker.position = position
+        if let point = points[safe: 1] {
+            setPlaneRotatin(toLocation: point) 
+        }
+        planeMarker.groundAnchor = appearance.markerGroundAnchor
+        planeMarker.icon = planeIcon
+        planeMarker.map = mapView
+        planeMarker.zIndex = 1
     }
     
-    func movePlane(marker: GMSMarker) {
+    func movePlane(moveCamera: Bool) {
         self.timerAnimation = Timer.scheduledTimer(
             withTimeInterval: appearance.animationDuration,
             repeats: true
-        ) { timer in
-            guard let point = self.points.first else {
-                self.timerAnimation.invalidate()
+        ) { [weak self] timer in
+            guard let point = self?.points.first else {
+                self?.timerAnimation.invalidate()
                 return
             }
-            CATransaction.begin()
-            CATransaction.setAnimationDuration(self.appearance.animationDuration)
-            
-            marker.rotation = GoogleLocationHealper.bearing(
-                fromLocation: marker.position,
-                toLocation: point
-            )
-            marker.position = point
+            if let point = self?.points[safe: 2] {
+                self?.setPlaneRotatin(toLocation: point)
+            }
+            self?.planeMarker.position = point
 
-            CATransaction.commit()
-            self.points.removeFirst()
+            if moveCamera {
+                self?.mapView.animate(toLocation: point)
+            }
+            self?.points.removeFirst()
         }
+    }
+    
+    func setPlaneRotatin(toLocation: CLLocationCoordinate2D) {
+        planeMarker.rotation = GoogleLocationHealper.bearing(
+            fromLocation: planeMarker.position,
+            toLocation: toLocation
+        )
+    }
+    
+    func containsLocation(location: MapViewLocationModel) -> Bool {
+        let region = self.mapView.projection.visibleRegion()
+        let bounds = GMSCoordinateBounds(region: region)
+        
+        let location: CLLocationCoordinate2D = .init(
+            latitude: location.latitude,
+            longitude: location.longitude
+        )
+        return bounds.contains(location)
+    }
+    
+    func needMoveCamera(fromLocation: CLLocationCoordinate2D, toLocation: CLLocationCoordinate2D) -> Bool {
+        let first = mapView.projection.point(for: fromLocation).x
+        let second = mapView.projection.point(for: toLocation).x
+        
+        return abs(first.distance(to: second)) < frame.width
     }
 }

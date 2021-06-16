@@ -6,7 +6,7 @@
 //  Copyright © 2021 Galina Fedorova. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct AirportsDataFlow {
     
@@ -19,5 +19,19 @@ struct AirportsDataFlow {
             let models: [AirportModel]
         }
     }
-
+    
+    struct Placeholder {
+        struct ViewModel {
+            let title: String
+            let icon: UIImage?
+        }
+    }
+    
+    struct InitialState {
+        struct ViewModel {
+            let cityName: String
+            let title: String
+            let icon: UIImage?
+        }
+    }
 }

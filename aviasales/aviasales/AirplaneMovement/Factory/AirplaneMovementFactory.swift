@@ -13,9 +13,9 @@ class AirplaneMovementFactory {
     func build(toLatitude: Double, toLongitude: Double, iata: String) -> UIViewController {
         let model = AirplaneMovementModel(
             fromLocation: .init(
-                iata: AirplaneMovementUtility.iata,
-                latitude: AirplaneMovementUtility.startLatitude,
-                longitude: AirplaneMovementUtility.startLongitude),
+                iata: Utility.iata,
+                latitude: Utility.startLatitude,
+                longitude: Utility.startLongitude),
             toLocation: .init(iata: iata, latitude: toLatitude, longitude: toLongitude))
         let presenter = AirplaneMovementPresenter()
         let interactor = AirplaneMovementInteractor(movementModel: model, presenter: presenter)

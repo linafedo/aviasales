@@ -6,12 +6,14 @@
 //  Copyright © 2021 Galina Fedorova. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol AirportsPresenterProtocol {
     func presentAirportList(response: AirportsDataFlow.FetchAirportList.Response)
     func presentEmpty()
     func presentLoading()
+    func presentInitialState()
+    func presentError()
 }
 
 class AirportsPresenter: AirportsPresenterProtocol {
@@ -27,12 +29,38 @@ class AirportsPresenter: AirportsPresenterProtocol {
     
     func presentEmpty() {
         DispatchQueue.main.async {
-            self.viewController?.displayEmpty()
+            self.viewController?.displayEmpty(
+                viewModel: .init(
+                    title: "Не нашли",
+                    icon: UIImage(named: "smile")
+                )
+            )
         }
     }
     
     func presentLoading() {
         viewController?.displayLoading()
+    }
+    
+    func presentInitialState() {
+        viewController?.displayInitialState(
+            viewModel: .init(
+                cityName: Utility.cityName,
+                title: "Начните поиск",
+                icon: UIImage(named: "airplane")
+            )
+        )
+    }
+    
+    func presentError() {
+        DispatchQueue.main.async {
+            self.viewController?.displayEmpty(
+                viewModel: .init(
+                    title: "Что-то пошло не так",
+                    icon: UIImage(named: "smile")
+                )
+            )
+        }
     }
 }
 

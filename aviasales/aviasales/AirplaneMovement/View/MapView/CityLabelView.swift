@@ -30,8 +30,9 @@ final class CityLabelView: UIView {
 extension CityLabelView {
     struct Appearence {
         let size: CGSize = .init(width: 60, height: 28)
-        let alpha: CGFloat = 0.7
+        let alpha: CGFloat = 0.8
         let borderWidth: CGFloat = 2
+        let borderColor: UIColor = UIColor(red: 73, green: 188, blue: 217)
     }
 }
 
@@ -41,11 +42,11 @@ private extension CityLabelView {
     func setup() {
         backgroundColor = UIColor.white.withAlphaComponent(appearance.alpha)
         layer.cornerRadius = frame.height/2
-        layer.borderColor = UIColor.blue.cgColor
+        layer.borderColor = appearance.borderColor.cgColor
         layer.borderWidth = appearance.borderWidth
 
         addSubview(titleLabel)
-        titleLabel.textColor = .blue
+        titleLabel.textColor = appearance.borderColor
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
