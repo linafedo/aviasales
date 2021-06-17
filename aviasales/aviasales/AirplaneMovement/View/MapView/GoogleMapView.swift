@@ -115,8 +115,8 @@ private extension GoogleMapView {
             .solidColor(.clear)
         ]
         let scale = 1.0 / mapView.projection.points(forMeters: 1, at: mapView.camera.target)
-        let solidLine = NSNumber(value: 5 * Float(scale))
-        let gap = NSNumber(value: 3 * Float(scale))
+        let solidLine = NSNumber(value: 3 * Float(scale))
+        let gap = NSNumber(value: 2.5 * Float(scale))
         
         polyline.spans = GMSStyleSpans(
             pathData.path, styles,
